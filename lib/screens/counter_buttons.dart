@@ -1,4 +1,4 @@
-import 'package:first_bloc_app/bloc/counter_cubit.dart';
+import 'package:first_bloc_app/bloc/counter_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,13 +10,16 @@ class CounterButtons extends StatelessWidget {
       child: Column(
         children: [
           RaisedButton(
-              onPressed: () => context.read<CounterCubit>().increment(),
+              onPressed: () =>
+                  context.read<CounterBloc>().add(CounterEvent.increment),
               child: Icon(Icons.add)),
           RaisedButton(
-              onPressed: () => context.read<CounterCubit>().decrement(),
+              onPressed: () =>
+                  context.read<CounterBloc>().add(CounterEvent.decrement),
               child: Icon(Icons.remove)),
           RaisedButton(
-              onPressed: () => context.read<CounterCubit>().reset(),
+              onPressed: () =>
+                  context.read<CounterBloc>().add(CounterEvent.reset),
               child: Icon(Icons.refresh)),
         ],
       ),

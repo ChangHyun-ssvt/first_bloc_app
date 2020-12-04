@@ -1,4 +1,4 @@
-import 'package:first_bloc_app/bloc/counter_cubit.dart';
+import 'package:first_bloc_app/bloc/counter_bloc.dart';
 import 'package:first_bloc_app/screens/counter_buttons.dart';
 import 'package:first_bloc_app/screens/counter_view.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,10 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class CounterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    print("CounterPage");
-
     return BlocProvider(
-        create: (_) => CounterCubit(),
+        create: (_) => CounterBloc(),
         child: Scaffold(
           appBar: AppBar(title: Text("Counter Widget")),
           body: Center(

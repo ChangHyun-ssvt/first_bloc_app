@@ -6,4 +6,10 @@ class CounterObserver extends BlocObserver {
     print('${cubit.runtimeType} $change');
     super.onChange(cubit, change);
   }
+
+  @override
+  void onTransition(Bloc bloc, Transition transition) {
+    print('${bloc.state} $transition');
+    super.onTransition(bloc, transition);
+  }
 }
