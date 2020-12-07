@@ -1,4 +1,4 @@
-import 'package:first_bloc_app/bloc/counter_bloc.dart';
+import 'package:first_bloc_app/bloc/counter_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +9,7 @@ class CounterView extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     return Center(
-      child: BlocBuilder<CounterBloc, int>(
+      child: BlocBuilder<CounterCubit, int>(
         builder: (context, state) => Text(
           "$state",
           style: textTheme.headline2,
