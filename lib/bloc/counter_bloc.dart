@@ -1,23 +1,31 @@
-import 'package:bloc/bloc.dart';
+import 'package:rxdart/rxdart.dart';
 
-enum CounterEvent { increment, decrement, reset }
+class CounterBloc {
+  int count = 0;
+  BehaviorSubject<int> _subjectCounter;
 
-class CounterBloc extends Bloc<CounterEvent, int> {
-  /// {@macro counter_cubit}
-  CounterBloc() : super(0);
+  CounterBloc({this.count}) {
+    _subjectCounter = BehaviorSubject<int>.seeded(this.count);
+  }
 
-  @override
-  Stream<int> mapEventToState(CounterEvent event) async* {
-    switch (event) {
-      case CounterEvent.increment:
-        yield state + 1;
-        break;
-      case CounterEvent.decrement:
-        yield state - 1;
-        break;
-      case CounterEvent.reset:
-        yield 0;
-        break;
-    }
+  Stream<int> get stream => _subjectCounter.stream;
+
+  void increment() {
+    count++;
+    _subjectCounter.sink.add(count);
+  }
+
+  void decrement() {
+    count--;
+    _subjectCounter.sink.add(count);
+  }
+
+  void reset() {
+    count = 0;
+    _subjectCounter.sink.add(count);
+  }
+
+  void dispose() {
+    _subjectCounter.close();
   }
 }
