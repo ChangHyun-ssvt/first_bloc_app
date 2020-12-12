@@ -8,17 +8,18 @@ class SecondPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    return BlocProvider.value(
-      value: BlocProvider.of<CounterBloc>(context),
-      child: Scaffold(
-        appBar: AppBar(title: Text("Second Page")),
-        body: Center(
-          child: Text(
-            "${BlocProvider.of<CounterBloc>(context).state}",
-            style: textTheme.headline2,
+    return BlocBuilder<CounterBloc, int>(
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(title: Text("Second Page")),
+          body: Center(
+            child: Text(
+              "$state",
+              style: textTheme.headline2,
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
